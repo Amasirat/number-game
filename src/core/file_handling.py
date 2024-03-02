@@ -1,5 +1,6 @@
 import os
 import csv
+import globals
 
 DB_FIELDNAMES = ["id", "question"]
 # outputs full directory to created database
@@ -30,8 +31,15 @@ def row_count(file_directory: str) -> int:
         
     return counter
         
-def get_file_input(file_directory: str) -> None:
-    pass
+def add_input_to_database(input_directory: str, db_directory: str) -> None:
+    if not os.path.isfile(input_directory) or not os.path.isfile(db_directory):
+        raise FileNotFoundError
+    
+    questions : list = list()
+    
+    with open(input_directory) as input_file:
+        for row in input_file:
+            questions.append(row)
 
 def add_question_to_database(question: str, file_directory: str) -> None:
     if not os.path.isfile(file_directory):
@@ -45,5 +53,3 @@ def add_question_to_database(question: str, file_directory: str) -> None:
                 DB_FIELDNAMES[1]:question
             }
         )
-
-

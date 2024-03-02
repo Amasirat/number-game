@@ -1,2 +1,2 @@
-def program_iteration() -> int:
+def program_iteration(**kwargs) -> int:
     pass
