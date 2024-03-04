@@ -1,7 +1,9 @@
 id,question
-1,age
-2,age
-3,age
+1,"What is your motto?
+"
+2,"What are you doing?
+"
+3,What is this?
 4,age
 5,age
 6,age
@@ -10,3 +12,6 @@ id,question
 9,age
 10,age
 11,age
+12,age
+13,age
+14,age

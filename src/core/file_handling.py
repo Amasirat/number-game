@@ -1,6 +1,7 @@
+# for creating directories and file system validation
 import os
+# for database
 import csv
-import globals
 
 DB_FIELDNAMES = ["id", "question"]
 # outputs full directory to created database
@@ -30,16 +31,6 @@ def row_count(file_directory: str) -> int:
         counter += sum(1 for _ in reader)
         
     return counter
-        
-def add_input_to_database(input_directory: str, db_directory: str) -> None:
-    if not os.path.isfile(input_directory) or not os.path.isfile(db_directory):
-        raise FileNotFoundError
-    
-    questions : list = list()
-    
-    with open(input_directory) as input_file:
-        for row in input_file:
-            questions.append(row)
 
 def add_question_to_database(question: str, file_directory: str) -> None:
     if not os.path.isfile(file_directory):
@@ -53,3 +44,17 @@ def add_question_to_database(question: str, file_directory: str) -> None:
                 DB_FIELDNAMES[1]:question
             }
         )
+        
+def add_input_to_database(input_directory: str, db_directory: str) -> None:
+    if not os.path.isfile(input_directory):
+        raise FileNotFoundError
+    
+    questions : list = list()
+    
+    with open(input_directory) as input_file:
+        for row in input_file:
+            questions.append(row)
+            
+# write questions into DB
+    for question in questions:
+        add_question_to_database(question, db_directory)        
